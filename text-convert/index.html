@@ -2,17 +2,195 @@
 <html>
 
   <head>
-    <title>[PLACEHOLDER]</title>
+    <meta charset="UTF-8">
+    <title>Text Converter</title>
   </head>
 
   <body>
     <style>
-      *{text-align:center}
-      /* .row {display:flex}
-      .column {flex:25%;padding:10pt} */
+      body {background-color:DarkSlateGrey;}
+      *{
+        font-family: "San Francisco","Helvetica Neue","Helvetica","Arial";
+        text-align:center;
+      }
+      .row {display:flex}
+      .column {flex:25%;padding:10pt}
+      .spacers {flex:15%;padding:10pt}
+      .input, .output {font-family: "quivira","San Francisco","Helvetica Neue","Helvetica","Arial";}
+      h1, h2, h4 {color:azure}
     </style>
 
-    <h1>This is a placeholder for my text converter page.</h1>
+    <script>
+
+      function fancy(text){
+        text = text.replace(/[a-z]/g, (char) => {
+          const code = char.charCodeAt() - 97;
+          return String.fromCharCode(55349, code + 56554);
+        });
+        text = text.replace(/[A-Z]/g, (char) => {
+          const code = char.charCodeAt() - 65;
+          return String.fromCharCode(55349, code + 56528);
+        });
+        return text;
+      }
+
+      function caligraphy(text){
+        text = text.replace(/[a-z]/g, (char) => {
+            const code = char.charCodeAt() - 97;
+            return String.fromCharCode(55349, code + 56606);
+          });
+        text = text.replace(/[A-Z]/g, (char) => {
+            const code = char.charCodeAt() - 65;
+            return String.fromCharCode(55349, code + 56684);
+          });
+        return text;
+      }
+
+      function typewriter(text){
+        text = text.replace(/[a-z]/g, (char) => {
+            const code = char.charCodeAt() - 97;
+            return String.fromCharCode(55349, code + 56970);
+          });
+        text = text.replace(/[A-Z]/g, (char) => {
+            const code = char.charCodeAt() - 65;
+            return String.fromCharCode(55349, code + 56944);
+          });
+        text = text.replace(/[0-9]/g, (char) => {
+            const code = char.charCodeAt() - 48;
+            return String.fromCharCode(55349, code + 57334);
+          });
+        return text;
+      }
+
+      function doubleline(text){
+        text = text.replace(/[a-z]/g, (char) => {
+            const code = char.charCodeAt() - 97;
+            return String.fromCharCode(55349, code + 56658);
+          });
+        text = text.replace(/[A-Z]/g, (char) => {
+            const code = char.charCodeAt() - 65;
+            return String.fromCharCode(55349, code + 56658);
+          });
+        return text;
+      }
+
+      function timesnewbastard(text){
+        var code = 0
+            outputstr = "",
+            index = 1;
+        for (character of text) {
+
+          if (character.match(/[a-z]/)) {
+            if (index % 7 == 0) {
+              code = character.charCodeAt() - 97;
+              outputstr = outputstr.concat(String.fromCharCode(55349, code + 56762));
+              index++;
+            } else {
+              code = character.charCodeAt() - 97;
+              outputstr = outputstr.concat(String.fromCharCode(55349, code + 56346));
+              index++;
+            }
+          } else if (character.match(/[A-Z]/)) {
+            if (index % 7 == 0) {
+              code = character.charCodeAt() - 65;
+              outputstr = outputstr.concat(String.fromCharCode(55349, code + 56736));
+              index++;
+            } else {
+              code = character.charCodeAt() - 65;
+              outputstr = outputstr.concat(String.fromCharCode(55349, code + 56320));
+              index++;
+            }
+          } else {
+            outputstr = outputstr.concat(character)
+          }
+        }
+        return outputstr;
+      }
+
+      function timesnewbastardBOLD(text){
+        var code = 0
+            outputstr = "",
+            index = 1;
+        for (character of text) {
+
+          if (character.match(/[a-z]/)) {
+            if (index % 7 == 0) {
+              code = character.charCodeAt() - 97;
+              outputstr = outputstr.concat(String.fromCharCode(55349, code + 56814));
+              index++;
+            } else {
+              code = character.charCodeAt() - 97;
+              outputstr = outputstr.concat(String.fromCharCode(55349, code + 56346));
+              index++;
+            }
+          } else if (character.match(/[A-Z]/)) {
+            if (index % 7 == 0) {
+              code = character.charCodeAt() - 65;
+              outputstr = outputstr.concat(String.fromCharCode(55349, code + 56788));
+              index++;
+            } else {
+              code = character.charCodeAt() - 65;
+              outputstr = outputstr.concat(String.fromCharCode(55349, code + 56320));
+              index++;
+            }
+          } else {
+            outputstr = outputstr.concat(character)
+          }
+        }
+        return outputstr;
+      }
+
+      function update(input){
+        document.getElementById("TNB").value =timesnewbastard(input)
+        document.getElementById("fancy").value = fancy(input)
+        document.getElementById("TNBB").value = timesnewbastardBOLD(input)
+        document.getElementById("typewriter").value = typewriter(input)
+        document.getElementById("doubleline").value = doubleline(input)
+        document.getElementById("caligraphy").value = caligraphy(input)
+      }
+
+    </script>
+
+    <h1><span style="font-family:quivira">𝔗𝔈𝔛𝔗</span> <i>𝕔 𝕠 𝕟 𝕧 𝕖 𝕣 𝕥 𝕖 𝕣</i></h1>
+    <hr>
+    <h2>Convert plain text into <span style="font-family:quivira">𝔣𝔞𝔫𝔠𝔶 𝔲𝔫𝔦𝔠𝔬𝔡𝔢!</span></h2>
+    <h4>Warning, apperance may vary depending on the font.</h4>
+    <textarea class="input" rows="10" cols="50" style="text-align:left;" placeholder="Type or paste some text here..." onkeyup="update(this.value)"></textarea>
+    <div><br></div>
+    <hr>
+
+    <div class="row">
+      <div class="spacers"></div>
+      <div class="column">
+        <textarea class="output" id="TNB" rows="10" cols="50" style="text-align:left;" onclick="this.select()" placeholder="𝐓𝐢𝐦𝐞𝐬 𝐍𝖾𝐰 𝐁𝐚𝐬𝐭𝐚𝗋𝐝"></textarea>
+      </div>
+      <div class="column">
+        <textarea class="output" id="fancy" rows="10" cols="50" style="text-align:left;" onclick="this.select()" placeholder="𝓕𝓪𝓷𝓬𝔂"></textarea>
+      </div>
+      <div class="spacers"></div>
+    </div>
+
+    <div class="row">
+      <div class="spacers"></div>
+      <div class="column">
+        <textarea class="output" id="TNBB" rows="10" cols="50" style="text-align:left;" onclick="this.select()" placeholder="𝐓𝐢𝐦𝐞𝐬 𝐍𝗲𝐰 𝐁𝐚𝐬𝐭𝐚𝗿𝐝 (𝐛𝐨𝐥𝐝)"></textarea>
+      </div>
+      <div class="column">
+        <textarea class="output" id="typewriter" rows="10" cols="50" style="text-align:left;" onclick="this.select()" placeholder="𝚝𝚢𝚙𝚎𝚠𝚛𝚒𝚝𝚎𝚛"></textarea>
+      </div>
+      <div class="spacers"></div>
+    </div>
+
+    <div class="row">
+      <div class="spacers"></div>
+      <div class="column">
+        <textarea class="output" id="doubleline" rows="10" cols="50" style="text-align:left;" onclick="this.select()" placeholder="𝕕𝕠𝕦𝕓𝕝𝕖 𝕝𝕚𝕟𝕖"></textarea>
+      </div>
+      <div class="column">
+        <textarea class="output" id="caligraphy" rows="10" cols="50" style="text-align:left;" onclick="this.select()" placeholder="𝕮𝔞𝔩𝔦𝔤𝔯𝔞𝔭𝔥𝔶"></textarea>
+      </div>
+      <div class="spacers"></div>
+    </div>
 
   </body>
 
